@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class Home extends Component {
 //search bar, search button
 //when button click call the api
+//add additional parameter for year search
+constructor(props){
+  super(props);
+  this.state = {
+    searchQuery: ""
+  };
+  this.searchQuery = this.searchQuery.bind(this);
+}
 
-searchQuery(){
+
+async searchQuery(){
     //calls the api to look for the query
     //query by date
     //title
-     /* componentDidMount() {
-      // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
+     /*
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
     const response = await fetch('');
@@ -28,6 +34,19 @@ searchQuery(){
   };
 */
     console.log("Let's search now");
+    console.log(this.state.searchQuery);
+    try{
+      const res = await axios.get('/query', 
+      {query: this.state.searchQuery}, 
+      {headers: {
+        'Content-Type': 'application/json'}
+    })
+    }
+    catch(e){
+      console.log(e);
+    }
+    //once results are done, go to the result page
+    //return <Redirect to="/results" /> //have a true, false
 }
 
   render() {
@@ -43,7 +62,7 @@ searchQuery(){
             <Row>
                 <Col lg={8} md={12} sm={12} xs={12}>
                     <Form>
-                        <Form.Control name="query" placeholder="Search through thousands of images"/>
+                        <Form.Control name="query" placeholder="Search through thousands of images" onChange={e => this.setState({searchQuery: e.target.value})}/>
                     </Form>
                 </Col>
                 <Col lg={4} md={12} sm={12}>
