@@ -4,6 +4,8 @@ import Header from "./header.js";
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
+
+var result = "";
 class Home extends Component {
 //search bar, search button
 //when button click call the api
@@ -11,45 +13,69 @@ class Home extends Component {
 constructor(props){
   super(props);
   this.state = {
-    searchQuery: ""
+    searchQuery: "",
+    navResults: false,
+    collection: ""
   };
   this.searchQuery = this.searchQuery.bind(this);
+  this.handleInputChange = this.handleInputChange.bind(this);
+  this.makeSearch = this.makeSearch.bind(this);
 }
 
 
-async searchQuery(){
-    //calls the api to look for the query
-    //query by date
-    //title
-     /*
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('');
-    const body = await response.json();
+handleInputChange(e){
+  this.setState({
+      searchQuery: e.target.value
+  })
+}
 
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
-*/
+
+searchQuery(){
+    //calls the api to look for the query
     console.log("Let's search now");
     console.log(this.state.searchQuery);
-    try{
-      const res = await axios.get('/query', 
-      {query: this.state.searchQuery}, 
-      {headers: {
-        'Content-Type': 'application/json'}
-    })
+    let url = 'https://images-api.nasa.gov/search?q='+encodeURIComponent(this.state.searchQuery); 
+    const options = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
     }
-    catch(e){
-      console.log(e);
-    }
-    //once results are done, go to the result page
-    //return <Redirect to="/results" /> //have a true, false
+    return fetch(url, options)
+    .then((response) =>{
+        var data = response.json();
+        return data
+      })
+    .then(function(json){
+        console.log("results")
+        result = json.collection.items;
+        return json.collection.items;
+
+      })
+    .catch(error => console.log("Error: "+error))
 }
 
+async makeSearch(){
+  //calls the api function and waits for the results
+  await this.searchQuery();
+ /* let results = await this.searchQuery().then(function(result){
+    console.log(result);
+    return;
+  });*/
+  console.log(result);
+ /* this.setState({
+    collection: results,
+    navResults:true
+  })*/
+}
+
+
+
   render() {
+    if(this.state.navResults){
+      return <Redirect to="/results" />
+    }
     return (
         <div>
         <Header/>
@@ -62,11 +88,11 @@ async searchQuery(){
             <Row>
                 <Col lg={8} md={12} sm={12} xs={12}>
                     <Form>
-                        <Form.Control name="query" placeholder="Search through thousands of images" onChange={e => this.setState({searchQuery: e.target.value})}/>
+                        <Form.Control name="query" placeholder="Search through thousands of images" onChange={this.handleInputChange}/>
                     </Form>
                 </Col>
                 <Col lg={4} md={12} sm={12}>
-                <Button variant="primary" type="submit" onClick={this.searchQuery}>
+                <Button variant="primary" type="submit" onClick={this.makeSearch}>
                     Search
                 </Button>
                 </Col>
