@@ -6,19 +6,19 @@ import Result from './components/result.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-class App extends Component {
-
-  render() {
+import ResultState from "./context/resultContext/ResultState";
+const App = () => {
     return (
-      <Router>
-        <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/about" component={About}></Route>
-        <Route exact path="/results" component={Result}></Route>
-        </Switch>
-      </Router>
+      <ResultState>
+        <Router>
+          <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/about" component={About}></Route>
+          <Route exact path="/results" component={Result}></Route>
+          </Switch>
+        </Router>
+      </ResultState>
     );
-  }
 }
 
 export default App;

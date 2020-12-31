@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
+import ImageInfo from "./imageInfo.js";
 
 class Result extends Component {
 //display number of results for query
 //on image hover add a drop shadow
 //add center
 
+//pass the collection to each image
+
+filterResult(){
+    //filters the search results according to the filters checked off
+}
+
+sortResult(){
+    //sorts the results according to the selection
+}
 
   render() {
     return (
@@ -39,6 +49,7 @@ class Result extends Component {
             <Row>
                 <Col>
                     Images here
+                    <ImageInfo/>
                 </Col>
             </Row>
         </Container>
