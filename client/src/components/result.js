@@ -1,24 +1,30 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect } from 'react';
+import ResultContext from '../context/resultContext/ResultContext';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
 import ImageInfo from "./imageInfo.js";
 
-class Result extends Component {
-//display number of results for query
-//on image hover add a drop shadow
-//add center
+const Result = props => {
+    const resultContext = useContext(ResultContext);
 
-//pass the collection to each image
+    //display number of results for query
+    //on image hover add a drop shadow
+    //add center
 
-filterResult(){
-    //filters the search results according to the filters checked off
-}
+    //pass the collection to each image
+    useEffect(()=>{
+        console.log(resultContext.collection)
+    })
 
-sortResult(){
-    //sorts the results according to the selection
-}
+    const filterResult =()=>{
+        //filters the search results according to the filters checked off
+    }
 
-  render() {
+    const sortResult=()=>{
+        //sorts the results according to the selection
+    }
+
+
     return (
         <div>
         <Header/>
@@ -55,7 +61,6 @@ sortResult(){
         </Container>
         </div>
     );
-  }
 }
 
 export default Result;

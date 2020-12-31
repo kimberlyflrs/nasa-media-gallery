@@ -4,7 +4,6 @@ import Header from "./header.js";
 import {Redirect} from 'react-router-dom';
 import ResultContext from '../context/resultContext/ResultContext';
 
-var results="";
 const Home = props =>  {
 //add additional parameter for year search
 const resultContext = useContext(ResultContext);
@@ -17,43 +16,12 @@ const [navResults, setNavResults] = useState(false);
   setSearchQuery( e.target.value)
   }
 
-  const searchTerm = (searchQuery) =>{
-    console.log("searching term: "+ searchQuery)
-    resultContext.searchQuery(searchQuery);
-  }
-
-  const search = () =>{
-    //calls the api to look for the query
-    console.log("Let's search now");
-    console.log(searchQuery);
-    let url = 'https://images-api.nasa.gov/search?q='+encodeURIComponent(searchQuery); 
-    const options = {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8'
-      }
-    }
-    return fetch(url, options)
-    .then((response) =>{
-        var data = response.json();
-        return data
-      })
-    .then(function(json){
-        console.log("results")
-        results = json.collection.items;
-        return json.collection.items;
-
-      })
-    .catch(error => console.log("Error: "+error))
-  }
-
-  const makeSearch = ()=>{
+  const searchTerm = async() =>{
     //calls the api function and waits for the results
-    searchTerm(searchQuery);
-    //console.log(results);
-    //setCollection(results);
-    //setNavResults(true);
+    console.log("searching term: "+ searchQuery)
+    await resultContext.searchQuery(searchQuery);
+    console.log("done");
+    setNavResults(true);
   }
 
 
@@ -78,7 +46,7 @@ const [navResults, setNavResults] = useState(false);
                     </Form>
                 </Col>
                 <Col lg={4} md={12} sm={12}>
-                <Button variant="primary" type="submit" onClick={makeSearch}>
+                <Button variant="primary" type="submit" onClick={searchTerm}>
                     Search
                 </Button>
                 </Col>

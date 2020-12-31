@@ -3,7 +3,6 @@ import ResultContext from "./ResultContext";
 import ResultReducer from "./ResultReducer";
 import {SEARCH_SUCCESS} from "./types.js";
 
-var results="";
 const ResultState = props =>{
     const initialState = {
         query: "",
@@ -13,7 +12,8 @@ const ResultState = props =>{
 
     const [state, dispatch] = useReducer(ResultReducer, initialState);
 
-    const searchQuery = (term) =>{
+    //searches the term
+    const searchQuery = async(term) =>{
         console.log("term: "+term);
         let url = 'https://images-api.nasa.gov/search?q='+encodeURIComponent(term); 
         
@@ -25,22 +25,24 @@ const ResultState = props =>{
           }
         }
 
-        const data = fetch(url, options)
+        const data = await fetch(url, options)
         .then((response) =>{
             var data = response.json();
             return data
         })
         .then(function(json){
-            console.log("results")
-            results = json.collection.items;
             return json.collection.items;
 
         })
         .catch(error => console.log("Error: "+error))
 
-        dispatch({type: SEARCH_SUCCESS, payload: data})
+        console.log("we're done fetching")
+        console.log(data);
+        dispatch({type: SEARCH_SUCCESS, payload: data, query: term});
     }
 
+
+    //error message
     const errorMessage = ()=>{
         console.log("there is an error");
     }
@@ -58,7 +60,7 @@ return (
         }}>
             {props.children}
     </ResultContext.Provider>
-)
-}
+    )
+};
 
 export default ResultState;

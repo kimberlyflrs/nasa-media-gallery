@@ -7,11 +7,11 @@ import {
 const ResultReducer = (state, action) =>{
     switch(action.type){
         case SEARCH_SUCCESS:
+            console.log("search success");
             return{
                 ...state,
-                query: action.payload.term,
-                collection: action.payload.data,
-                error: ""
+                query: action.query,
+                collection: action.payload
             };
         case SEARCH_FAIL:
             return{
