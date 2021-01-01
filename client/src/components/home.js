@@ -19,7 +19,6 @@ const [navResults, setNavResults] = useState(false);
     //calls the api function and waits for the results
     console.log("searching term: "+ searchQuery)
     await resultContext.searchQuery(searchQuery);
-    console.log("done");
     setNavResults(true);
   }
 

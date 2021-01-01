@@ -1,11 +1,14 @@
 import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import audioImage from "../assets/audio.png";
 
-const ImageInfo = props => {
-//pop up of the image with the information
-//users can then share it with others (maybe twitter or email)
+/*To Do
+- on hover card, add a drop shadow
+- pop up modal
+ */
 
+
+const ImageInfo = props => {
 
 let image="";
   // if video/image use the image from the item
