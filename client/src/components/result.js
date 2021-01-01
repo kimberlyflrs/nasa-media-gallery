@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ResultContext from '../context/resultContext/ResultContext';
 import { Form, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
@@ -7,43 +7,39 @@ import ImageInfo from "./imageInfo.js";
 //To-Do
 /* 
 - pass each item to the image info component
-- get filter working
-- get sort by working
+- get filter working [DONE]
+- get sort by working  [DONE]
 - add bootstrap (center, rows, etc)
 - pagination
 */
 
-var fC = []; //rename fC
+var filterList = []; //rename fC
 
 const Result = props => {
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
     const [collection, setCollection] = useState(resultContext.collection);
-    const [filterList, setFilterList] = useState(resultContext.collection); //may need to remove
 
+    
     const filterResult =(event)=>{
         //filters the search results according to the filters checked off
         const target = event.target;
         if(target.checked){
-            fC.push(target.name)
+            filterList.push(target.name)
         }
         else{
-            var index = fC.indexOf(target.name);
-            fC.splice(index,1)
+            var index = filterList.indexOf(target.name);
+            filterList.splice(index,1)
         }
-        console.log("i selected a check box")
-        console.log(fC);
 
-        if(fC.length===0){
-            console.log(collection)
-            return setFilterList(collection)
+        if(filterList.length===0){
+            return setCollection(resultContext.collection)
         }
 
         var filtered = resultContext.collection.filter(item => {
-            return fC.includes(item.data[0].media_type)
+            return filterList.includes(item.data[0].media_type)
         })
-        console.log(filtered)
-        return setFilterList(filtered)
+        return setCollection(filtered)
 
     }
 
@@ -52,19 +48,20 @@ const Result = props => {
         console.log("i selected something")
         //get the collection and then sort it by date
         const target = event.target;
+        const newList = [...collection]
         if(target.value === "Newest"){
             console.log("Sorting by newest")
-            const sortList = filterList.sort((a,b)=> new Date(b.data[0].date_created) - new Date(a.data[0].date_created));
-            console.log(sortList);
+            setCollection(newList.sort((a,b)=> new Date(b.data[0].date_created) - new Date(a.data[0].date_created)));
+            
         }
         else{
             console.log("Sorting by oldest")
-            const sortList = filterList.sort((a,b)=> new Date(a.data[0].date_created) - new Date(b.data[0].date_created));
-            console.log(sortList);
+            setCollection(newList.sort((a,b)=> new Date(a.data[0].date_created) - new Date(b.data[0].date_created)));
+            
         }
     }
 
-    let results = filterList.map(item =>
+    let results = collection.map(item =>
         <div>
             <ImageInfo key={item.data[0].nasa_id} info={item}/>
         </div>
