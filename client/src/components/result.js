@@ -13,13 +13,13 @@ import ImageInfo from "./imageInfo.js";
 - pagination
 */
 
-var fC = [];
+var fC = []; //rename fC
 
 const Result = props => {
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
     const [collection, setCollection] = useState(resultContext.collection);
-    const [filterList, setFilterList] = useState(resultContext.collection);
+    const [filterList, setFilterList] = useState(resultContext.collection); //may need to remove
 
     const filterResult =(event)=>{
         //filters the search results according to the filters checked off
@@ -51,7 +51,17 @@ const Result = props => {
         //sorts the results according to the selection
         console.log("i selected something")
         //get the collection and then sort it by date
-
+        const target = event.target;
+        if(target.value === "Newest"){
+            console.log("Sorting by newest")
+            const sortList = filterList.sort((a,b)=> new Date(b.data[0].date_created) - new Date(a.data[0].date_created));
+            console.log(sortList);
+        }
+        else{
+            console.log("Sorting by oldest")
+            const sortList = filterList.sort((a,b)=> new Date(a.data[0].date_created) - new Date(b.data[0].date_created));
+            console.log(sortList);
+        }
     }
 
     let results = filterList.map(item =>
@@ -80,9 +90,9 @@ const Result = props => {
                     <Form.Row>
                     <h4>Sort By</h4>
                     <Col xs={5}>
-                    <Form.Control as="select" defaultValue="Choose..." onChange={sortResult}>
-                        <option>Newest to Oldest</option>
-                        <option>Oldest to Newest</option>
+                    <Form.Control as="select" defaultValue="Newest" onChange={sortResult}>
+                        <option value="Newest">Newest to Oldest</option>
+                        <option value="Oldest">Oldest to Newest</option>
                     </Form.Control>
                     </Col>
                     </Form.Row>
