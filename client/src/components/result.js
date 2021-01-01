@@ -4,10 +4,17 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
 import ImageInfo from "./imageInfo.js";
 
+//To-Do
+/* 
+- pass each item to the image info component
+- get filter working
+- get sort by working
+*/
+
+
 const Result = props => {
     const resultContext = useContext(ResultContext);
 
-    //display number of results for query
     //on image hover add a drop shadow
     //add center
 
@@ -24,13 +31,18 @@ const Result = props => {
         //sorts the results according to the selection
     }
 
+    let results = resultContext.collection.map(item =>
+        <div>
+            <ImageInfo key={item.data[0].nasa_id} info={item}/>
+        </div>
+    )
 
     return (
         <div>
         <Header/>
         <Container fluid className="center">
             <Row>
-                <h2>XXXX results found for XXXXX</h2>
+                <h2>{resultContext.collection.length} results found for '{resultContext.query}'</h2>
             </Row>
             <Row>
                 <Col>
@@ -38,6 +50,7 @@ const Result = props => {
                     <h4>Filter </h4>
                     <Form.Check inline type="checkbox" label="Image"></Form.Check>
                     <Form.Check inline type="checkbox" label="Video"></Form.Check>
+                    <Form.Check inline type="checkbox" label="Audio"></Form.Check>
                     </Form.Row>
                 </Col>
                 <Col>
@@ -54,8 +67,7 @@ const Result = props => {
             </Row>
             <Row>
                 <Col>
-                    Images here
-                    <ImageInfo/>
+                    {results}
                 </Col>
             </Row>
         </Container>

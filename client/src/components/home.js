@@ -4,11 +4,10 @@ import Header from "./header.js";
 import {Redirect} from 'react-router-dom';
 import ResultContext from '../context/resultContext/ResultContext';
 
-const Home = props =>  {
+const Home = () =>  {
 //add additional parameter for year search
 const resultContext = useContext(ResultContext);
 const [searchQuery, setSearchQuery] = useState("");
-const [collection, setCollection] = useState([]);
 const [navResults, setNavResults] = useState(false);
 
 
