@@ -42,6 +42,34 @@ const ResultState = props =>{
     }
 
 
+        //searches the media of a video or audio file
+        const searchMedia = async(ref, media_type) =>{
+            console.log("ref: "+ref);
+            
+            const options = {
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8'
+              }
+            }
+    
+            const data = await fetch(ref, options)
+            .then((response) =>{
+                var data = response.json();
+                return data
+            })
+            .then(function(json){
+                console.log(json)
+                //retrieve the first video/audio file ending in .mp4 or .mp3
+                return json;
+    
+            })
+            .catch(error => console.log("Error: "+error))
+    
+            console.log("we're done fetching")
+        }
+
     //error message
     const errorMessage = ()=>{
         console.log("there is an error");
@@ -56,6 +84,7 @@ return (
             collection: state.collection,
             error: state.error,
             searchQuery,
+            searchMedia,
             errorMessage
         }}>
             {props.children}

@@ -6,7 +6,7 @@ import ImageInfo from "./imageInfo.js";
 
 //To-Do
 /* 
-- pass each item to the image info component
+- pass each item to the image info component[Done]
 - get filter working [DONE]
 - get sort by working  [DONE]
 - add bootstrap (center, rows, etc)
