@@ -60,9 +60,22 @@ const ResultState = props =>{
                 return data
             })
             .then(function(json){
-                console.log(json)
                 //retrieve the first video/audio file ending in .mp4 or .mp3
-                return json;
+                var files;
+                if(media_type==="video"){
+                    files = json.filter(item => {
+                        var regex = /(orig)\.(mp4)$/
+                        return regex.test(item)
+                    })
+                }
+                else{//audio
+                    files = json.filter(item => {
+                        var regex = /(orig)\.(mp3)$/
+                        return regex.test(item)
+                    })
+                }
+                console.log(files);
+                return files;
     
             })
             .catch(error => console.log("Error: "+error))

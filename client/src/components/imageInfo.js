@@ -23,6 +23,10 @@ const ImageInfo = props => {
       image = props.info.links[0].href;
       resultContext.searchMedia(props.info.href, "video");
     }
+    if(props.info.data[0].media_type==="audio"){
+      image = props.info.href;
+      resultContext.searchMedia(props.info.href, "audio");
+    }
     setShowModal(true)
   }
 
