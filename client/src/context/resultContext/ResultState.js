@@ -1,13 +1,14 @@
 import React, {useReducer} from "react";
 import ResultContext from "./ResultContext";
 import ResultReducer from "./ResultReducer";
-import {SEARCH_SUCCESS} from "./types.js";
+import {SEARCH_SUCCESS, FILE_SEARCH_SUCCESS} from "./types.js";
 
 const ResultState = props =>{
     const initialState = {
         query: "",
         collection: [],
-        error: ""
+        error: "",
+        file_source: ""
     };
 
     const [state, dispatch] = useReducer(ResultReducer, initialState);
@@ -75,12 +76,15 @@ const ResultState = props =>{
                     })
                 }
                 console.log(files);
-                return files;
+                return files[0];
     
             })
             .catch(error => console.log("Error: "+error))
     
-            console.log("we're done fetching")
+            console.log("we're done fetching file search")
+            console.log(data);
+            return data
+            //dispatch({type: FILE_SEARCH_SUCCESS, payload: data});
         }
 
     //error message

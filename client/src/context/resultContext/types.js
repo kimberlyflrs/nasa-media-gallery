@@ -1,3 +1,4 @@
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_FAIL = "SEARCH_FAIL";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+export const FILE_SEARCH_SUCCESS = "FILE_SEARCH_SUCCESS";

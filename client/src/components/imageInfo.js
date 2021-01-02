@@ -15,40 +15,50 @@ import ResultContext from '../context/resultContext/ResultContext';
 const ImageInfo = props => {
   const resultContext = useContext(ResultContext);
   const[showModal, setShowModal] = useState(false);
+  const[mediaFile, setMediaFile] = useState("");
+  //let media_file="";
+  let audio = "";
 
-  const onClickCard = () =>{
+
+  const onClickCard = async() =>{
     //shows the modal
     //search for resource here
+    var media_file;
     if(props.info.data[0].media_type==="video"){
       image = props.info.links[0].href;
-      resultContext.searchMedia(props.info.href, "video");
+      var vid = await resultContext.searchMedia(props.info.href, "video");
+      console.log(vid);
+//      media_file = <video src={vid} controls>Sorry, your browser doesn't support embedded videos.</video>;
+      setMediaFile(vid);
+
     }
     if(props.info.data[0].media_type==="audio"){
       image = props.info.href;
-      resultContext.searchMedia(props.info.href, "audio");
-    }
+      var audio = await resultContext.searchMedia(props.info.href, "audio");
+    //  media_file = <audio controls><source src="http://images-assets.nasa.gov/audio/Ep78 Apollo 1/Ep78 Apollo 1~orig.mp3" type="audio/mpeg"/>Your browser does not support the audio element.</audio>;
+      setMediaFile(audio)
+  }
+    /*if(props.info.data.media_type==="image"){
+      media_file = <img src={props.info.links[0].href} alt={props.info.links[0].title}></img>
+      setMediaFile(media_file);
+
+    }*/
     setShowModal(true)
   }
 
-  /*const searchMedia = (ref, media_type)=>{
-    //searches for the media of the object if video or audio
-    console.log("searching for missing media at "+ref);
-  }*/
 
 let image="";
-let media_file="";
   // if video/image use the image from the item
   if(props.info.data[0].media_type==="video"){
     image = props.info.links[0].href;
   }
   else if (props.info.data[0].media_type==="image"){
     image = props.info.links[0].href;
-    media_file = <img src={props.info.links[0].href} alt={props.info.links[0].title}></img>
+    var m_f = <img src={props.info.links[0].href} alt={props.info.links[0].title}></img>
   }
   //if it's an audio file, use the audioImage
   else{
     image = audioImage;
-    //searchMedia(props.info.href, "audio");
   }
 
   let keywords = props.info.data[0].keywords.map(item=>{
@@ -79,8 +89,14 @@ let media_file="";
                 {props.info.data[0].title}
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>...
-              {media_file}
+            <Modal.Body>
+              {m_f}
+
+              <video width="320" src={mediaFile} controls>Sorry, your browser doesn't support embedded videos.</video>;
+
+              <audio controls><source src={mediaFile} type="audio/mpeg"/>
+              Your browser does not support the audio element.</audio>
+
               <p>{props.info.data[0].description}</p>
               <p></p>
               {keywords}

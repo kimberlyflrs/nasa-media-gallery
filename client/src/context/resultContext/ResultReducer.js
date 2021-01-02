@@ -1,5 +1,6 @@
 import {
     SEARCH_SUCCESS,
+    FILE_SEARCH_SUCCESS,
     SEARCH_FAIL,
     CLEAR_ERROR
 } from "./types.js";
@@ -12,6 +13,11 @@ const ResultReducer = (state, action) =>{
                 ...state,
                 query: action.query,
                 collection: action.payload
+            };
+        case FILE_SEARCH_SUCCESS://fix this
+            return{
+                ...state,
+                file_source: action.payload
             };
         case SEARCH_FAIL:
             return{
