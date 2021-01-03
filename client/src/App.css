@@ -1,17 +1,63 @@
-.App, .center {
+body,html{
+  height:100%;
+  margin:0;
+  background-image: url('./assets/outer-space.jpg');
+}
+
+#home-section{
+  padding: 8% 0;
+}
+
+.center{
   text-align: center;
 }
 
-.App-header, .app {
-/*  background-image: url('./assets/mars-bg.jpg');
-  background-size: contain;
-  background-repeat: repeat-x;
-  background-position: center;*/
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+h1, h2, h4{
+  color: white;
 }
 
+.margin-5{
+  margin-top: 10vh;
+}
+
+.searchbar{
+  padding: 0 5vh;
+}
+
+.card-style{
+  margin:  5vh;
+}
+.center-card{
+  margin: 0 auto;
+}
+
+@media(max-width:576px){/*extra small devices*/
+  #project-name{
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 576px) { /*small devices*/
+  .button-margin{
+    margin-top: 5vh;
+  }
+  .searchbar{
+    padding: 0 2vh;
+  }
+}
+
+@media (min-width: 767.98px) { /*landscape small devices*/
+  .searchbar{
+    padding: 0 5vh;
+  }
+}
+
+@media (min-width: 991.98px) { /*tablet sizes*/
+
+}
+
+@media (min-width: 1199.98px) { /*desktop sizes*/
+  .searchbar{
+    padding: 0 10vh;
+  }
+}

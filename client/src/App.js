@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import About from './components/about.js';
 import Home from './components/home.js';
@@ -14,7 +14,7 @@ const App = () => {
           <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/about" component={About}></Route>
-          <Route exact path="/results" component={Result}></Route>
+          <Route exact path="/results/:id" component={Result}></Route>
           </Switch>
         </Router>
       </ResultState>

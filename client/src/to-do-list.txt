@@ -1,14 +1,10 @@
 To-Do List
-- Home component
----center search bar
----add space background
 
 -About
 ---information on the project
 
 
 -Result
----put cards into rows
 ---pagination
 
 -ImageInfo

@@ -62,7 +62,7 @@ const Result = props => {
     }
 
     let results = collection.map(item =>
-        <div>
+        <div className="center-card">
             <ImageInfo key={item.data[0].nasa_id} info={item}/>
         </div>
     )
@@ -71,10 +71,12 @@ const Result = props => {
         <div>
         <Header/>
         <Container fluid className="center">
-            <Row>
+            <Row className="center">
+                <Col>
                 <h2>{numResult} results found for '{resultContext.query}'</h2>
+                </Col>
             </Row>
-            <Row>
+            <Row className="center">
                 <Col>
                     <Form.Row>
                     <h4>Filter </h4>
@@ -95,10 +97,9 @@ const Result = props => {
                     </Form.Row>
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    {results}
-                </Col>
+            <Row className="center">
+                
+                {results}
             </Row>
         </Container>
         </div>

@@ -70,7 +70,7 @@ let image="";
 
 
     return (
-        <div>
+        <div className="card-style" >
           <Card style={{ width: '18rem' }} onClick={onClickCard}>
             <Card.Img variant="top" src={image} />
             <Card.Body>
