@@ -71,25 +71,27 @@ const Result = props => {
         <div>
         <Header/>
         <Container fluid className="center">
-            <Row className="center">
+            <Row className="center" id="results">
                 <Col>
                 <h2>{numResult} results found for '{resultContext.query}'</h2>
                 </Col>
             </Row>
-            <Row className="center">
-                <Col>
-                    <Form.Row>
-                    <h4>Filter </h4>
-                    <Form.Check inline name="image" type="checkbox" label="Image" onChange={filterResult}></Form.Check>
-                    <Form.Check inline name="video" type="checkbox" label="Video" onChange={filterResult}></Form.Check>
-                    <Form.Check inline name="audio" type="checkbox" label="Audio" onChange={filterResult}></Form.Check>
+
+            <Row className="center" id="filter-sort">
+                <Col lg={6} md={6} sm={12}>
+                    <Form.Row className="form-center">
+                    <h4 className="spacing">Filter </h4>
+                    <Form.Check className="form-color" inline name="image" type="checkbox" label="Image" onChange={filterResult}></Form.Check>
+                    <Form.Check className="form-color" inline name="video" type="checkbox" label="Video" onChange={filterResult}></Form.Check>
+                    <Form.Check className="form-color" inline name="audio" type="checkbox" label="Audio" onChange={filterResult}></Form.Check>
                     </Form.Row>
                 </Col>
-                <Col>
-                    <Form.Row>
-                    <h4>Sort By</h4>
+                <Col lg={6} md={6} sm={12}>
+                    <Form.Row className="form-center">
+                    <h4 className="spacing">Sort By</h4>
                     <Col xs={5}>
-                    <Form.Control as="select" defaultValue="Newest" onChange={sortResult}>
+                    <Form.Control as="select" defaultValue="Revalence" onChange={sortResult}>
+                        <option value="Revalence">Revalence</option>
                         <option value="Newest">Newest to Oldest</option>
                         <option value="Oldest">Oldest to Newest</option>
                     </Form.Control>
@@ -97,8 +99,8 @@ const Result = props => {
                     </Form.Row>
                 </Col>
             </Row>
+
             <Row className="center">
-                
                 {results}
             </Row>
         </Container>

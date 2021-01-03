@@ -12,7 +12,7 @@ body,html{
   text-align: center;
 }
 
-h1, h2, h4{
+h1, h2, h4, .form-color{
   color: white;
 }
 
@@ -29,6 +29,18 @@ h1, h2, h4{
 }
 .center-card{
   margin: 0 auto;
+}
+
+#results, #filter-sort{
+  margin: 5vh 0;
+}
+
+.form-center{
+  justify-content:center;
+}
+
+.spacing{
+  padding-right: 15px;
 }
 
 @media(max-width:576px){/*extra small devices*/
