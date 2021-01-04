@@ -16,6 +16,7 @@ const Result = props => {
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
     const [collection, setCollection] = useState(resultContext.collection);
+    const [sortType, setSortType] = useState("revalence");
 
     
     const filterResult =(event)=>{

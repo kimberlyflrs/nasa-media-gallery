@@ -59,9 +59,17 @@ const ImageInfo = props => {
 
 
     /*SETTING UP KEYWORDS*/
-    let keywords = props.info.data[0].keywords.map((item, index)=>{
-      return <p key={index+"keyword"} className="keyword">{item}</p>
-    })
+    console.log(props.info);
+    //check if keywords exist
+    let keywords;
+    try{
+      keywords = props.info.data[0].keywords.map((item, index)=>{
+        return <p key={index+"keyword"} className="keyword">{item}</p>
+      })
+    }
+    catch(e){
+      keywords = ""
+    }
 
     /*SETTING  UP DATE*/
     let date = new Date(props.info.data[0].date_created)
