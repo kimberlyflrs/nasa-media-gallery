@@ -15,7 +15,7 @@ class Header extends Component {
                 className="d-inline-block align-top"
                 alt="NASA logo"
             />
-            NASA Image Search
+            NASA Search Gallery
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">

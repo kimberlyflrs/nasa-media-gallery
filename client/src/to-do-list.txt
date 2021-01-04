@@ -1,17 +1,12 @@
 To-Do List
 
--About
----information on the project
-
-
 -Result
 ---pagination
+---fix sort and filter [currently not using the sorted list to do this]
+---set the results based on what's checked off
 
 -ImageInfo
----responsiveness to media files
----drop shadow on hover
 ---more info for descriptions
----clean up modal [only show video for video file, only show audio for audio file, etc]
 
 -Header
 ---fix error message
@@ -22,7 +17,5 @@ Context
 Other
 ---make sure variables named correctly
 ---clean up files and add comments
----add query to result route
----write readme
 ---test responsiveness on different platforms and browsers
----backup files
+---isLoading variable [imageinfo and results]

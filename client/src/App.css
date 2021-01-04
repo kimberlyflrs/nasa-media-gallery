@@ -12,11 +12,11 @@ body,html{
   text-align: center;
 }
 
-h1, h2, h4, .form-color{
+h1, h2, h4, .form-color, .about{
   color: white;
 }
 
-.margin-5{
+.margin-10{
   margin-top: 10vh;
 }
 
@@ -27,11 +27,15 @@ h1, h2, h4, .form-color{
 .card-style{
   margin:  5vh;
 }
+
+.card-style:hover{
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.616), 0 6px 20px 0 rgba(255, 255, 255, 0.616);
+}
 .center-card{
   margin: 0 auto;
 }
 
-#results, #filter-sort{
+#results, #filter-sort, #about-section{
   margin: 5vh 0;
 }
 
@@ -43,9 +47,48 @@ h1, h2, h4, .form-color{
   padding-right: 15px;
 }
 
+.keyword{
+  background-color:#0B3D91;
+  color:white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+#info-section{
+  margin: 0 2vh;
+}
+
+.show{
+  display:block
+}
+
+.hide{
+  display:none
+}
+
+video{
+  width:100%;
+  height:auto;
+}
+
+.res-image{
+  width:100%;
+  max-width: 400px;
+  height: auto;
+  text-align: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10px;
+}
+
 @media(max-width:576px){/*extra small devices*/
   #project-name{
     font-size: 16px;
+  }
+  .card-style{
+    margin:2vh;
   }
 }
 

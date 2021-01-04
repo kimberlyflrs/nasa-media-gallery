@@ -33,20 +33,20 @@ const [navResults, setNavResults] = useState(false);
         <Header/>
         <Container fluid>
             <div id="home-section">
-            <Row className="center margin-5">
+            <Row className="center margin-10">
                 <Col>
                   <h1>Search thousands of images, audios, and videos courtesy of the NASA API.</h1>
                 </Col>
             </Row>
 
-            <Row className="center margin-5">
+            <Row className="center margin-10">
                 <Col lg={12} md={12} sm={12} xs={12} className="searchbar">
                     <Form className="searchbar">
                         <Form.Control name="query" placeholder="Search media files" onChange={handleInputChange}/>
                     </Form>
                 </Col>
             </Row>
-            <Row className="center margin-5">
+            <Row className="center margin-10">
                 <Col lg={12} md={12} sm={12}>
                 <Button variant="primary" type="submit" onClick={searchTerm}>
                     Search

@@ -6,10 +6,7 @@ import ImageInfo from "./imageInfo.js";
 
 //To-Do
 /* 
-- pass each item to the image info component[Done]
-- get filter working [DONE]
-- get sort by working  [DONE]
-- add bootstrap (center, rows, etc)
+- fix sort/filter to use the same collection
 - pagination
 */
 
@@ -61,16 +58,16 @@ const Result = props => {
         }
     }
 
-    let results = collection.map(item =>
-        <div className="center-card">
-            <ImageInfo key={item.data[0].nasa_id} info={item}/>
+    let results = collection.map((item, index) =>
+        <div key= {index} className="center-card">
+            <ImageInfo key={index+'res'} info={item}/>
         </div>
     )
 
     return (
         <div>
         <Header/>
-        <Container fluid className="center">
+        <Container fluid>
             <Row className="center" id="results">
                 <Col>
                 <h2>{numResult} results found for '{resultContext.query}'</h2>
