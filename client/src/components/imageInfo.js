@@ -9,7 +9,6 @@ import ResultContext from '../context/resultContext/ResultContext';
  */
 
 
-
 const ImageInfo = props => {
   const resultContext = useContext(ResultContext);
   const[showModal, setShowModal] = useState(false);

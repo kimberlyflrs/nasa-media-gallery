@@ -1,13 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import ResultContext from '../context/resultContext/ResultContext';
-import { Form, Container, Row, Col } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import Header from "./header.js";
 import ImageInfo from "./imageInfo.js";
+import rocketImage from "../assets/Rocket.png";
 
 //To-Do
 /* 
 - fix sort/filter to use the same collection
-- pagination
 */
 
 var filterList = []; //rename fC
@@ -30,12 +30,14 @@ const Result = props => {
         }
 
         if(filterList.length===0){
+            setNumResult(resultContext.collection.length);
             return setCollection(resultContext.collection)
         }
 
         var filtered = resultContext.collection.filter(item => {
             return filterList.includes(item.data[0].media_type)
         })
+        setNumResult(filtered.length);
         return setCollection(filtered)
 
     }
@@ -58,6 +60,12 @@ const Result = props => {
         }
     }
 
+    const scrollTop = ()=>{
+        //scrolls to the top of the screen
+        window.scroll({top:0,behavior:'smooth'})
+
+    }
+
     let results = collection.map((item, index) =>
         <div key= {index} className="center-card">
             <ImageInfo key={index+'res'} info={item}/>
@@ -68,6 +76,9 @@ const Result = props => {
         <div>
         <Header/>
         <Container fluid>
+            <Button onClick={scrollTop} id="top-btn">
+                <img src={rocketImage} alt="rocket" width="40" height="40" id="rocket"/>
+            </Button>
             <Row className="center" id="results">
                 <Col>
                 <h2>{numResult} results found for '{resultContext.query}'</h2>
