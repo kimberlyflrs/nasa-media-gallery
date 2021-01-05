@@ -1,8 +1,5 @@
 To-Do List
 
--Result
----fix sort and filter [currently not using the sorted list to do this]
-
 -ImageInfo
 ---more info for descriptions
 
@@ -11,6 +8,8 @@ Context
 
 Other
 ---make sure variables named correctly
+---add error message
 ---clean up files and add comments
 ---test responsiveness on different platforms and browsers
 ---isLoading variable [imageinfo and results]
+---footer

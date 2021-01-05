@@ -59,10 +59,8 @@ const ImageInfo = props => {
 
 
     /*SETTING UP KEYWORDS*/
-    console.log(props.info);
-    //check if keywords exist
     let keywords;
-    try{
+    try{    //check if keywords exist
       keywords = props.info.data[0].keywords.map((item, index)=>{
         return <p key={index+"keyword"} className="keyword">{item}</p>
       })

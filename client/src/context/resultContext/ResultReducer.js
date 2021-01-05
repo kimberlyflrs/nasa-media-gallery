@@ -9,10 +9,12 @@ const ResultReducer = (state, action) =>{
     switch(action.type){
         case SEARCH_SUCCESS:
             console.log("search success");
+            var newList = [...action.payload]
+            var resultList = newList.sort((a,b)=> new Date(b.data[0].date_created) - new Date(a.data[0].date_created))
             return{
                 ...state,
                 query: action.query,
-                collection: action.payload
+                collection: resultList
             };
         case FILE_SEARCH_SUCCESS://fix this
             return{
