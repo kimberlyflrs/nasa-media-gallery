@@ -99,6 +99,11 @@ video{
   transform: rotate(-45deg);
 }
 
+.viewbtn{
+  background-color: white;
+  color:#0B3D91
+}
+
 @media(max-width:576px){/*extra small devices*/
   #project-name{
     font-size: 16px;

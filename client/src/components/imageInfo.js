@@ -1,27 +1,27 @@
 import React, { useState, useContext} from 'react';
-import { Card, Row, Modal } from 'react-bootstrap';
+import { Card, Row, Modal, Button } from 'react-bootstrap';
 import audioImage from "../assets/audio.png";
 import ResultContext from '../context/resultContext/ResultContext';
 
-
-/*To Do
-- view more option in description
- */
-
+//let hideBtn=false;
 
 const ImageInfo = props => {
   const resultContext = useContext(ResultContext);
-  const[showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [vidClass, setVidClass] = useState(false);
   const [audioClass, setAudioClass] = useState(false);
-  const[mediaFile, setMediaFile] = useState("");
+  const [mediaFile, setMediaFile] = useState("");
+  const [descriptionClass, setDescriptionClass] = useState(false);
+  const [hideBtn, setHideBtn] = useState(false);
 
   let image="";
-
+  let keywords;
+  let description;
 
 
 /*SHOWS THE MODAL */
   const onClickCard = async() =>{
+    hideViewBtn();
     if(props.info.data[0].media_type==="video"){
       console.log("it's a video")
       image = props.info.links[0].href;
@@ -59,7 +59,6 @@ const ImageInfo = props => {
 
 
     /*SETTING UP KEYWORDS*/
-    let keywords;
     try{    //check if keywords exist
       keywords = props.info.data[0].keywords.map((item, index)=>{
         return <p key={index+"keyword"} className="keyword">{item}</p>
@@ -73,6 +72,40 @@ const ImageInfo = props => {
     let date = new Date(props.info.data[0].date_created)
     date = date.toDateString();
 
+
+  /*DESCRIPTION SPLITTING*/
+    try{
+      if(props.info.data[0].description.length>100){
+      let first = props.info.data[0].description.slice(0,100);
+      let second = props.info.data[0].description.slice(100);
+      description = <p>
+                      {first}
+                      <span className={descriptionClass ? "hide" : "show"} id="dots">...</span>
+                      <span className={descriptionClass ? "show" : "hide"} id="View More">{second}</span>
+                    </p>
+      }
+      else{
+      description =<p>{props.info.data[0].description}</p>
+      }
+    }
+    catch(error){
+      description = "";
+    }
+
+    const viewDescription = () =>{
+      setDescriptionClass(!descriptionClass);
+    }
+
+    const hideViewBtn = () =>{
+      try{
+        if (props.info.data[0].description.length<100){
+          setHideBtn(true)
+        }
+      }
+      catch(error){
+        setHideBtn(true);
+      }
+    }
 
     return (
         <div className="card-style" >
@@ -107,7 +140,10 @@ const ImageInfo = props => {
                 Your browser does not support the audio element.</audio>
               </div>
 
-              <p>{props.info.data[0].description}<span id="dots">...</span><span id="View More"></span></p>
+              {description}
+              <div className={ hideBtn ? "hide" : "show"}>
+                <Button  className="viewbtn" onClick={viewDescription}>{descriptionClass? "View Less" : "View More"}</Button>
+              </div>
 
 
               <Row>

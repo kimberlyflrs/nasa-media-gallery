@@ -1,8 +1,5 @@
 To-Do List
 
--ImageInfo
----more info for descriptions
-
 Context
 ---fetch media files undefined currently in state, need to dispatch correctly
 
