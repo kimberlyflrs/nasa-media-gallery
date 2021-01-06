@@ -11,6 +11,7 @@ var sortType = "Newest to Oldest";
 
 
 const Result = props => {
+    console.log(props.location.pathname.split("/results/")[1]);
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
     const [collection, setCollection] = useState(resultContext.collection); //start off with a sorted list
@@ -79,6 +80,7 @@ const Result = props => {
             </Button>
             <Row className="center" id="results">
                 <Col>
+                <p className="white">{resultContext.search_error}</p>
                 <h2>{numResult} results found for '{resultContext.query}'</h2>
                 </Col>
             </Row>

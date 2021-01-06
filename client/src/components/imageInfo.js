@@ -2,8 +2,8 @@ import React, { useState, useContext} from 'react';
 import { Card, Row, Modal, Button } from 'react-bootstrap';
 import audioImage from "../assets/audio.png";
 import ResultContext from '../context/resultContext/ResultContext';
+import Loader from './loader';
 
-//let hideBtn=false;
 
 const ImageInfo = props => {
   const resultContext = useContext(ResultContext);
@@ -13,8 +13,9 @@ const ImageInfo = props => {
   const [mediaFile, setMediaFile] = useState("");
   const [descriptionClass, setDescriptionClass] = useState(false);
   const [hideBtn, setHideBtn] = useState(false);
+  const [errorVisibility, setErrorVisibility] = useState(false);
 
-  let image="";
+  let image;
   let keywords;
   let description;
 
@@ -22,6 +23,9 @@ const ImageInfo = props => {
 /*SHOWS THE MODAL */
   const onClickCard = async() =>{
     hideViewBtn();
+    //show the loading image
+    resultContext.changeLoading();
+
     if(props.info.data[0].media_type==="video"){
       console.log("it's a video")
       image = props.info.links[0].href;
@@ -42,6 +46,13 @@ const ImageInfo = props => {
       setVidClass(false)
       setAudioClass(false);
   }
+    if(resultContext.file_error!==""){
+      setErrorVisibility(true)
+    }
+    else{
+      setErrorVisibility(false)
+    }
+    //remove the loading image
     setShowModal(true)
   }
 
@@ -129,22 +140,28 @@ const ImageInfo = props => {
             </Modal.Header>
 
             <Modal.Body id="info-section">
-              {image_file}
+              <p className="error-spacing"><strong>{resultContext.file_error}</strong></p>
+              <Loader/>
 
-              <div className={vidClass ? "show" : "hide"}>
-                <video width="320" src={mediaFile} controls>Sorry, your browser doesn't support embedded videos.</video>
+              <div className={errorVisibility ? "hide" : "show"}>
+                {image_file}
+
+                <div className={vidClass ? "show" : "hide"}>
+                  <video width="320" src={mediaFile} controls>Sorry, your browser doesn't support embedded videos.</video>
+                </div>
+
+                <div className={audioClass ? "show" : "hide"}>
+                <div id="audio-container">
+                  <audio controls><source src={mediaFile} type="audio/mpeg"/>
+                  Your browser does not support the audio element.</audio>
+                </div>
+                </div>
+
+                {description}
+                <div className={ hideBtn ? "hide" : "show"} id="viewBtn">
+                  <Button  className="viewbtn" onClick={viewDescription}>{descriptionClass? "View Less" : "View More"}</Button>
+                </div>
               </div>
-
-              <div className={audioClass ? "show" : "hide"} id="audio-container">
-                <audio controls id="audio_file"><source src={mediaFile} type="audio/mpeg"/>
-                Your browser does not support the audio element.</audio>
-              </div>
-
-              {description}
-              <div className={ hideBtn ? "hide" : "show"} id="viewBtn">
-                <Button  className="viewbtn" onClick={viewDescription}>{descriptionClass? "View Less" : "View More"}</Button>
-              </div>
-
 
               <Row>
                     <p><strong>Keywords:</strong></p> {keywords}

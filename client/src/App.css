@@ -12,7 +12,7 @@ body,html{
   text-align: center;
 }
 
-h1, h2, h4, .form-color, .about{
+h1, h2, h4, .form-color, .about, .white{
   color: white;
 }
 
@@ -45,6 +45,10 @@ h1, h2, h4, .form-color, .about{
 
 .spacing{
   padding-right: 15px;
+}
+
+.error-spacing{
+  padding: 10px 0;
 }
 
 .keyword{
@@ -89,6 +93,13 @@ video{
   padding-bottom: 10px;
 }
 
+.loader{
+  text-align: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #top-btn{
   position: fixed;
   bottom: 20px;
@@ -109,6 +120,7 @@ video{
   background-color: white;
   color:#0B3D91
 }
+
 
 @media(max-width:576px){/*extra small devices*/
   #project-name{

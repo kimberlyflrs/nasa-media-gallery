@@ -1,38 +1,50 @@
 import {
     SEARCH_SUCCESS,
     FILE_SEARCH_SUCCESS,
+    FILE_SEARCH_FAIL,
     SEARCH_FAIL,
-    CLEAR_ERROR
+    LOADING_STATUS
 } from "./types.js";
 
 const ResultReducer = (state, action) =>{
     switch(action.type){
         case SEARCH_SUCCESS:
-            console.log("search success");
             var newList = [...action.payload]
             var resultList = newList.sort((a,b)=> new Date(b.data[0].date_created) - new Date(a.data[0].date_created))
             return{
                 ...state,
                 query: action.query,
-                collection: resultList
+                collection: resultList,
+                search_error: "",
+                file_error: "",
+                isloading: false
             };
-        case FILE_SEARCH_SUCCESS://fix this
+        case FILE_SEARCH_SUCCESS:
             return{
                 ...state,
-                file_source: action.payload
+                search_error:"",
+                file_error: "",
+                isloading: false
             };
         case SEARCH_FAIL:
             return{
                 ...state,
-                query: action.payload.term,
+                query: action.term,
                 collection: [],
-                error: action.payload.error
+                search_error: action.payload,
+                isloading: false
             }
-        case CLEAR_ERROR:
+        case FILE_SEARCH_FAIL:
             return{
                 ...state,
-                error:""
+                file_error: action.payload,
+                isloading: false
             }
+        case LOADING_STATUS:
+                return{
+                    ...state,
+                    isLoading: !state.isLoading
+                }
         default: 
             return state;
     }

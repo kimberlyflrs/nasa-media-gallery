@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Header from "./header.js";
 import {Redirect} from 'react-router-dom';
 import ResultContext from '../context/resultContext/ResultContext';
+import Loader from "./loader";
 
 const Home = () =>  {
 const resultContext = useContext(ResultContext);
@@ -16,6 +17,10 @@ const [navResults, setNavResults] = useState(false);
 
   const searchTerm = async() =>{
     //calls the api function and waits for the results
+    if(searchQuery === ""){
+      return
+    }
+    resultContext.changeLoading();
     await resultContext.searchQuery(searchQuery);
     setNavResults(true);
   }
@@ -47,9 +52,14 @@ const [navResults, setNavResults] = useState(false);
             </Row>
             <Row className="center margin-10">
                 <Col lg={12} md={12} sm={12}>
+                <div className={resultContext.isLoading ? "hide" : "show"}>
                 <Button variant="primary" type="submit" onClick={searchTerm}>
                     Search
                 </Button>
+                </div>
+                <div className="center">
+                <Loader/>
+                </div>
                 </Col>
             </Row>
             </div>

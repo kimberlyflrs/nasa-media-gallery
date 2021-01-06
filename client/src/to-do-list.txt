@@ -1,12 +1,6 @@
 To-Do List
 
-Context
----fetch media files undefined currently in state, need to dispatch correctly
----clean up files
-
 Other [Nice to Have]
----add error message
----isLoading variable [imageinfo and results]
 ---if user lands on the result page, load the info of that search [ResultRoute]
 
 Must do before
