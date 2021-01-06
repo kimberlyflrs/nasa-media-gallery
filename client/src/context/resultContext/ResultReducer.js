@@ -43,7 +43,7 @@ const ResultReducer = (state, action) =>{
         case LOADING_STATUS:
                 return{
                     ...state,
-                    isLoading: !state.isLoading
+                    isLoading: true
                 }
         default: 
             return state;

@@ -2,7 +2,6 @@ import React, { useState, useContext} from 'react';
 import { Card, Row, Modal, Button } from 'react-bootstrap';
 import audioImage from "../assets/audio.png";
 import ResultContext from '../context/resultContext/ResultContext';
-import Loader from './loader';
 
 
 const ImageInfo = props => {
@@ -23,8 +22,6 @@ const ImageInfo = props => {
 /*SHOWS THE MODAL */
   const onClickCard = async() =>{
     hideViewBtn();
-    //show the loading image
-    resultContext.changeLoading();
 
     if(props.info.data[0].media_type==="video"){
       console.log("it's a video")
@@ -141,7 +138,6 @@ const ImageInfo = props => {
 
             <Modal.Body id="info-section">
               <p className="error-spacing"><strong>{resultContext.file_error}</strong></p>
-              <Loader/>
 
               <div className={errorVisibility ? "hide" : "show"}>
                 {image_file}
