@@ -135,13 +135,13 @@ const ImageInfo = props => {
                 <video width="320" src={mediaFile} controls>Sorry, your browser doesn't support embedded videos.</video>
               </div>
 
-              <div className={audioClass ? "show" : "hide"}>
+              <div className={audioClass ? "show" : "hide"} id="audio-container">
                 <audio controls id="audio_file"><source src={mediaFile} type="audio/mpeg"/>
                 Your browser does not support the audio element.</audio>
               </div>
 
               {description}
-              <div className={ hideBtn ? "hide" : "show"}>
+              <div className={ hideBtn ? "hide" : "show"} id="viewBtn">
                 <Button  className="viewbtn" onClick={viewDescription}>{descriptionClass? "View Less" : "View More"}</Button>
               </div>
 

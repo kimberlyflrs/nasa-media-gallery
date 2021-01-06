@@ -5,7 +5,6 @@ import {Redirect} from 'react-router-dom';
 import ResultContext from '../context/resultContext/ResultContext';
 
 const Home = () =>  {
-//add additional parameter for year search
 const resultContext = useContext(ResultContext);
 const [searchQuery, setSearchQuery] = useState("");
 const [navResults, setNavResults] = useState(false);

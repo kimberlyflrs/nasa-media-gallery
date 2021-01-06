@@ -46,7 +46,6 @@ const ResultState = props =>{
         //searches the media of a video or audio file
         const searchMedia = async(ref, media_type) =>{
             console.log("ref: "+ref);
-            
             const options = {
               method: 'GET',
               headers: {
@@ -54,7 +53,6 @@ const ResultState = props =>{
                 'Content-Type': 'application/json;charset=UTF-8'
               }
             }
-    
             const data = await fetch(ref, options)
             .then((response) =>{
                 var data = response.json();
@@ -71,7 +69,7 @@ const ResultState = props =>{
                 }
                 else{//audio
                     files = json.filter(item => {
-                        var regex = /(orig)\.(mp3)$/
+                        var regex = /.(mp3)$/
                         return regex.test(item)
                     })
                 }
@@ -82,7 +80,6 @@ const ResultState = props =>{
             .catch(error => console.log("Error: "+error))
     
             console.log("we're done fetching file search")
-            console.log(data);
             return data
             //dispatch({type: FILE_SEARCH_SUCCESS, payload: data});
         }
