@@ -11,7 +11,8 @@ var sortType = "Newest to Oldest";
 
 
 const Result = props => {
-    console.log(props.location.pathname.split("/results/")[1]);
+    //load the variable again
+    //var query = props.location.pathname.split("/results/")[1];
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
     const [collection, setCollection] = useState(resultContext.collection); //start off with a sorted list

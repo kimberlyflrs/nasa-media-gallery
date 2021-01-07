@@ -1,7 +1,7 @@
 To-Do List
 
 Other [Nice to Have]
----if user lands on the result page, load the info of that search [ResultRoute]
+---if small screen, show a new screen
 
 Must do before
 ---clean up files and add comments

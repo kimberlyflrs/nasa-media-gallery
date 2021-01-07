@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import About from './components/about.js';
 import Home from './components/home.js';
 import Result from './components/result.js';
+import ResultRoute from './components/ResultRoute';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -14,7 +15,8 @@ const App = () => {
           <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/about" component={About}></Route>
-          <Route exact path="/results/:id" component={Result}></Route>
+          <ResultRoute exact path="/results/:id" component={Result}></ResultRoute>
+          <Route path='*' exact={true} component={Home} />
           </Switch>
         </Router>
       </ResultState>
