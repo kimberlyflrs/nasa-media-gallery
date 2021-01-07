@@ -29,7 +29,7 @@ const [navResults, setNavResults] = useState(false);
 
 
     if(navResults){
-      var url = "/results/"+searchQuery;
+      var url = "/nasa-image-gallery/results/"+searchQuery;
       return <Redirect to={url}/>
     }
     return (
