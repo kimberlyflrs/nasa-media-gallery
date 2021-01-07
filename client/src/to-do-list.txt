@@ -1,9 +1,1 @@
-To-Do List
 
-Other [Nice to Have]
----if small screen, show a new screen
-
-Must do before
----clean up files and add comments
----test responsiveness on different platforms and browsers
----make sure variables named correctly

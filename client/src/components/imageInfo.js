@@ -171,6 +171,7 @@ const ImageInfo = props => {
 
             </Modal.Body>
           </Modal>
+        
         </div>
     );
 }

@@ -17,14 +17,14 @@ const ResultReducer = (state, action) =>{
                 collection: resultList,
                 search_error: "",
                 file_error: "",
-                isloading: false
+                isLoading: false
             };
         case FILE_SEARCH_SUCCESS:
             return{
                 ...state,
                 search_error:"",
                 file_error: "",
-                isloading: false
+                isLoading: false
             };
         case SEARCH_FAIL:
             return{
@@ -32,13 +32,13 @@ const ResultReducer = (state, action) =>{
                 query: action.term,
                 collection: [],
                 search_error: action.payload,
-                isloading: false
+                isLoading: false
             }
         case FILE_SEARCH_FAIL:
             return{
                 ...state,
                 file_error: action.payload,
-                isloading: false
+                isLoading: false
             }
         case LOADING_STATUS:
                 return{

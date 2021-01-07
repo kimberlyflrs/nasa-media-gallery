@@ -11,12 +11,9 @@ var sortType = "Newest to Oldest";
 
 
 const Result = props => {
-    //load the variable again
-    //var query = props.location.pathname.split("/results/")[1];
     const resultContext = useContext(ResultContext);
     const [numResult, setNumResult] = useState(resultContext.collection.length);
-    const [collection, setCollection] = useState(resultContext.collection); //start off with a sorted list
-
+    const [collection, setCollection] = useState(resultContext.collection);
     
     const filterResult =()=>{
         if(filterList.length===0){//no filters
@@ -79,6 +76,7 @@ const Result = props => {
             <Button onClick={scrollTop} id="top-btn">
                 <img src={rocketImage} alt="rocket" width="40" height="40" id="rocket"/>
             </Button>
+            
             <Row className="center" id="results">
                 <Col>
                 <p className="white">{resultContext.search_error}</p>

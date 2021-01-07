@@ -132,7 +132,8 @@ video{
   audio{
     width: 250px;
     display:block;
-  }
+  }  
+
 }
 
 @media (min-width: 576px) { /*small devices*/
