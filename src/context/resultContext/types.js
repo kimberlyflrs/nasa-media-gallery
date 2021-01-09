@@ -3,3 +3,5 @@ export const SEARCH_FAIL = "SEARCH_FAIL";
 export const FILE_SEARCH_SUCCESS = "FILE_SEARCH_SUCCESS";
 export const FILE_SEARCH_FAIL = "FILE_SEARCH_FAIL";
 export const LOADING_STATUS = "LOADING_STATUS";
+export const SORT_LIST = "SORT_LIST";
+export const FILTER_LIST = "FILTER_LIST";

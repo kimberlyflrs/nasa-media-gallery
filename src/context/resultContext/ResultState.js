@@ -1,12 +1,15 @@
 import React, {useReducer} from "react";
 import ResultContext from "./ResultContext";
 import ResultReducer from "./ResultReducer";
-import {SEARCH_SUCCESS, SEARCH_FAIL, FILE_SEARCH_SUCCESS, FILE_SEARCH_FAIL, LOADING_STATUS} from "./types.js";
+import {SEARCH_SUCCESS, SEARCH_FAIL, FILE_SEARCH_SUCCESS, 
+    FILE_SEARCH_FAIL, LOADING_STATUS, SORT_LIST, FILTER_LIST} from "./types.js";
 
 const ResultState = props =>{
     const initialState = {
         query: "",
         collection: [],
+        changedList: [],
+        number: 0,
         search_error: "",
         file_error: "",
         isLoading: false
@@ -17,7 +20,6 @@ const ResultState = props =>{
     //searches the term
     const searchQuery = async(term) =>{
         let errorFound = false;
-        console.log("term: "+term);
         let url = 'https://images-api.nasa.gov/search?q='+encodeURIComponent(term); 
         
         const options = {
@@ -99,6 +101,17 @@ const ResultState = props =>{
         dispatch({type: LOADING_STATUS})
     }
 
+    //sorts the list 
+    const sortList = (sortType) =>{
+        dispatch({type: SORT_LIST, payload: sortType});
+    }
+
+    
+    //filter list
+    const filterList = (filterList, sortType) =>{
+        dispatch({type:FILTER_LIST, payload: filterList})
+        dispatch({type: SORT_LIST, payload: sortType})
+    }
 
 
 return (
@@ -106,12 +119,16 @@ return (
         value={{
             query: state.query,
             collection: state.collection,
+            changedList: state.changedList,
+            number: state.number,
             search_error: state.search_error,
             file_error: state.file_error,
             isLoading: state.isLoading,
             searchQuery,
             searchMedia,
-            changeLoading
+            changeLoading,
+            filterList,
+            sortList
         }}>
             {props.children}
     </ResultContext.Provider>

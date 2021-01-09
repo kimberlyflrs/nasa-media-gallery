@@ -13,9 +13,9 @@ const App = () => {
       <ResultState>
         <Router>
           <Switch>
-          <Route exact path="/nasa-image-gallery" component={Home}></Route>
-          <Route exact path="/nasa-image-gallery/about" component={About}></Route>
-          <ResultRoute exact path="/nasa-image-gallery/results/:id" component={Result}></ResultRoute>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/about" component={About}></Route>
+          <ResultRoute exact path="/results/:id" component={Result}></ResultRoute>
           <Route path='*' exact={true} component={Home} />
           </Switch>
         </Router>
