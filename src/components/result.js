@@ -14,8 +14,6 @@ var sortType = "Newest to Oldest";
 const Result = props => {
     const resultContext = useContext(ResultContext);
     const [searchQuery, setSearchQuery] = useState("");
-    //const [navBack, setNavBack] = useState(false);
-
 
     const onChangeFilter = (event) =>{
         const target = event.target;
@@ -47,9 +45,6 @@ const Result = props => {
             return
           }
         resultContext.searchQuery(searchQuery);
-        //setNavBack(true);
-        props.history.push(`/results/${searchQuery}`);
-
     }
 
     const handleInputChange = (event) =>{

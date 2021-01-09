@@ -29,8 +29,7 @@ const [navResults, setNavResults] = useState(false);
 
 
     if(navResults){
-      var url = `/results/${searchQuery}`;
-      return <Redirect to={url}/>
+      return <Redirect to="/search"/>
     }
     return (
             <div>
